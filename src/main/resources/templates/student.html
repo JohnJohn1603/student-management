@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Chi Tiết Sinh Viên</title>
+
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+        .card {
+            max-width: 500px;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 6px;
+        }
+        .row {
+            margin-bottom: 10px;
+        }
+        label {
+            font-weight: bold;
+        }
+        .actions {
+            margin-top: 20px;
+        }
+        button, a {
+            padding: 6px 12px;
+            margin-right: 10px;
+            text-decoration: none;
+        }
+        .btn-edit {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .btn-delete {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-back {
+            background-color: #ccc;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Chi Tiết Sinh Viên</h1>
+
+<div class="card">
+    <div class="row">
+        <label>ID:</label>
+        <span th:text="${sinhVien.id}">1</span>
+    </div>
+
+    <div class="row">
+        <label>Họ và Tên:</label>
+        <span th:text="${sinhVien.name}">Nguyen Van A</span>
+    </div>
+
+    <div class="row">
+        <label>Email:</label>
+        <span th:text="${sinhVien.email}">email@example.com</span>
+    </div>
+
+    <div class="row">
+        <label>Tuổi:</label>
+        <span th:text="${sinhVien.age}">20</span>
+    </div>
+
+    <div class="actions">
+        <!-- Nút chỉnh sửa -->
+        <a th:href="@{/students/edit/{id}(id=${sinhVien.id})}"
+           class="btn-edit">
+            Chỉnh Sửa
+        </a>
+
+        <!-- Form xóa -->
+        <form th:action="@{/students/delete/{id}(id=${sinhVien.id})}"
+              method="post"
+              style="display:inline"
+              onsubmit="return confirm('Bạn có chắc chắn muốn xóa sinh viên này không?');">
+
+            <button type="submit" class="btn-delete">
+                Xóa
+            </button>
+        </form>
+
+        <!-- Quay về danh sách -->
+        <a href="/students" class="btn-back">
+            Quay Lại
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

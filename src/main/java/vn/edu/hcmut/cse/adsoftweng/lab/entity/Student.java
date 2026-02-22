@@ -2,7 +2,11 @@ package vn.edu.hcmut.cse.adsoftweng.lab.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "students")
 public class Student {

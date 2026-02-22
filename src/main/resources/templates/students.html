@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> <!-- Khai bao namespace de dung th:* -->
+<head>
+    <meta charset="UTF-8">
+    <title>Danh Sach Sinh Vien</title>
+    <!-- CSS don gian -->
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+
+        .text-danger {
+            color: red;
+            font-weight: bold;
+        }
+        .btn {
+            text-decoration: none;
+            border: 1px solid #333;
+            background: #eee;
+            color: black;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+<h1>Danh Sach Sinh Vien (SSR)</h1>
+<form action="/students" method="GET">
+    <input type="text" name="keyword" placeholder="Nhap ten..." />
+    <button type="submit">Tim Kiem</button>
+
+    <a href="/students/new" class="btn">Them Moi</a>
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Ho va Ten</th>
+        <th>Email</th>
+        <th>Tuoi</th>
+        <th>Hanh Dong</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Cu phap Thymeleaf: Duyet qua danh sach "dsSinhVien" -->
+    <!-- th:each="bien_tam : ${key_trong_model}" -->
+    <tr th:each="student : ${dsSinhVien}" th:classappend="${student.age < 18} ? 'text-danger'">
+        <td th:text="${student.id}">ID Mau</td>
+        <td th:text="${student.name}">Ten Mau</td>
+        <td th:text="${student.email}">Email Mau</td>
+        <td th:text="${student.age}">0</td>
+        <td>
+            <a th:href="@{/students/{id}(id=${student.id})}"
+               class="btn">
+                Xem Chi Tiet
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
